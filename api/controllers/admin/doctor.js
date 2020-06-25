@@ -33,6 +33,24 @@ const createDoctor = async (req, res) => {
 }
 
 
+const doctorsList = async (req, res) => {
+    let doctors
+    try {
+        let doctorAll = Doctor.find().sort({ _id: -1 })
+        res.status(200).json({
+            doctors: doctorAll
+        })
+    } catch (error) {
+        if (error) {
+            res.status(500).json({
+                message: error
+            })
+        }
+    }
+}
+
+
 module.exports = {
-    createDoctor
+    createDoctor,
+    doctorsList
 }
