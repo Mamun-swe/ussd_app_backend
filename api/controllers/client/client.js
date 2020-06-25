@@ -1,3 +1,4 @@
+const Doctor = require("../../models/doctor")
 
 function validateCheck(msisdn, service_code) {
     if (msisdn && service_code) {
@@ -65,6 +66,26 @@ const clientRequest = async (req, res, next) => {
 }
 
 
+const findDoctor = async (req, res) => {
+    try {
+        let doctor
+        let reg_number = req.body.reg_number
+
+        const result = await Doctor.findOne({ reg_number: reg_number }, { role: 0, createdAt: 0, updatedAt: 0 })
+        res.json({
+            doctor: result
+        })
+
+    } catch (error) {
+        if (error) {
+            res.status(204).json({
+                error
+            })
+        }
+    }
+}
+
 module.exports = {
-    clientRequest
+    clientRequest,
+    findDoctor
 }
