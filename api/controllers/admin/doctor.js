@@ -34,8 +34,9 @@ const createDoctor = async (req, res) => {
 
 
 const doctorsList = async (req, res) => {
-    let doctors
     try {
+        let doctors
+        let message
         let doctorAll = Doctor.find().sort({ _id: -1 })
         res.status(200).json({
             doctors: doctorAll
