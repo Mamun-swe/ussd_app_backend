@@ -81,7 +81,8 @@ const findDoctor = async (req, res) => {
                 passing_year: 1,
                 doctor_type: 1,
                 expertise_area: 1,
-                verified: 1
+                verified: 1,
+                hospital: 1
             }
         )
         res.json({
