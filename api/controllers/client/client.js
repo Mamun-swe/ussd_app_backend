@@ -69,7 +69,7 @@ const clientRequest = async (req, res, next) => {
 const findDoctor = async (req, res) => {
     try {
         let doctor
-        let reg_number = req.body.reg_number
+        let reg_number = req.query.reg_number
 
         const result = await Doctor.findOne({ reg_number: reg_number }, { role: 0, createdAt: 0, updatedAt: 0 })
         res.json({
