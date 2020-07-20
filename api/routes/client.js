@@ -4,7 +4,7 @@ const router = express.Router()
 const clientController = require('../controllers/client/client')
 
 router.post('/request/', clientController.clientRequest)
-router.post('/doctor/search', clientController.findDoctor)
+router.get('/doctor/search', clientController.findDoctor)
 
 
 
