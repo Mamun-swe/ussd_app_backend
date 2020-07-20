@@ -12,7 +12,8 @@ const createDoctor = async (req, res) => {
             passing_year: req.body.passing_year,
             doctor_type: req.body.doctor_type,
             expertise_area: req.body.expertise_area,
-            verified: req.body.verified
+            verified: req.body.verified,
+            hospital: req.body.hospital
         })
 
         let newData = await data.save()

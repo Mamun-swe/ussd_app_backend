@@ -60,6 +60,11 @@ const doctorSchema = new Schema({
     },
     verified: {
         type: Boolean
+    },
+    hospital: {
+        type: String,
+        required: true,
+        trim: true
     }
 },
     {
