@@ -42,7 +42,7 @@ const doctorSchema = new Schema({
         trim: true
     },
     passing_year: {
-        type: Date,
+        type: String,
         required: true
     },
     doctor_type: {
