@@ -71,7 +71,18 @@ const findDoctor = async (req, res) => {
         let doctor
         let reg_number = req.query.reg_number
 
-        const result = await Doctor.findOne({ reg_number: reg_number }, { role: 0, createdAt: 0, updatedAt: 0 })
+        const result = await Doctor.findOne(
+            { reg_number: reg_number },
+            {
+                reg_number: 1,
+                name: 1,
+                education: 1,
+                passing_year: 1,
+                doctor_type: 1,
+                expertise_area: 1,
+                verified: 1
+            }
+        )
         res.json({
             doctor: result
         })
