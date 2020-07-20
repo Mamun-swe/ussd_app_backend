@@ -2,7 +2,6 @@ const Doctor = require("../../models/doctor")
 
 const createDoctor = async (req, res) => {
     try {
-        let message
         const data = new Doctor({
             reg_number: req.body.reg_number,
             name: req.body.name,
@@ -26,11 +25,9 @@ const createDoctor = async (req, res) => {
 
 
     } catch (error) {
-        if (error) {
-            res.status(500).json({
-                message: error
-            })
-        }
+        res.status(500).json({
+            message: error.message
+        })
     }
 }
 

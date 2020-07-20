@@ -7,7 +7,7 @@ const validateEmail = function (email) {
 
 const doctorSchema = new Schema({
     reg_number: {
-        type: Number,
+        type: String,
         required: true
     },
     name: {
@@ -19,7 +19,6 @@ const doctorSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
         lowercase: true,
         validate: [validateEmail, 'Please provide a valid email address']
@@ -28,7 +27,6 @@ const doctorSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true,
         validate: {
             validator: function (v) {
                 return /^(?:\+?88)?01[15-9]\d{8}$/.test(v);
