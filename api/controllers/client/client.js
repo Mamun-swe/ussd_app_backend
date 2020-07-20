@@ -74,6 +74,7 @@ const findDoctor = async (req, res) => {
         const result = await Doctor.findOne(
             { reg_number: reg_number },
             {
+                _id: 0,
                 reg_number: 1,
                 name: 1,
                 education: 1,
