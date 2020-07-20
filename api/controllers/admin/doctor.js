@@ -1,6 +1,5 @@
 const Doctor = require("../../models/doctor")
 
-
 const createDoctor = async (req, res) => {
     try {
         let message
@@ -13,7 +12,7 @@ const createDoctor = async (req, res) => {
             passing_year: req.body.passing_year,
             doctor_type: req.body.doctor_type,
             expertise_area: req.body.expertise_area,
-            doctor_type: req.body.doctor_type,
+            verified: req.body.verified
         })
 
         let newData = await data.save()

@@ -8,8 +8,7 @@ const validateEmail = function (email) {
 const doctorSchema = new Schema({
     reg_number: {
         type: Number,
-        required: true,
-        unique: true
+        required: true
     },
     name: {
         type: String,
@@ -48,7 +47,7 @@ const doctorSchema = new Schema({
     },
     doctor_type: {
         type: String,
-        enum: ["Dental", "MBBS", "Homeo", "Unani"]
+        enum: ["bds", "mbbs"]
     },
     expertise_area: {
         type: String,
@@ -58,6 +57,9 @@ const doctorSchema = new Schema({
     role: {
         type: String,
         default: "doctor"
+    },
+    verified: {
+        type: Boolean
     }
 },
     {
