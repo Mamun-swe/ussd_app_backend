@@ -17,14 +17,11 @@ const createDoctor = async (req, res) => {
 
         let newData = await data.save()
 
-        if (newData) {
-            res.status(200).json({
-                message: "success",
-            })
+        if (!newData) {
+            return res.status(500).json({message: "failed"})
         }
-        res.status(500).json({
-            message: "failed",
-        })
+        res.status(200).json({message: "success"})
+        
 
 
     } catch (error) {
