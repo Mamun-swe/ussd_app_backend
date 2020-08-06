@@ -7,5 +7,6 @@ router.get("/doctor", doctorController.doctorsList)
 router.get("/doctor/:id/view", doctorController.doctorView)
 router.delete("/doctor/:id/delete", doctorController.doctorDelete)
 router.put("/doctor/:id/update", doctorController.doctorUpdate)
+router.get("/doctor/count", doctorController.doctorCount)
 
 module.exports = router

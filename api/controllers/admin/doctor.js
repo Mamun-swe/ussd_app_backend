@@ -118,10 +118,25 @@ const doctorUpdate = async (req, res) => {
 }
 
 
+// Total doctor count
+const doctorCount = async(req, res, next) => {
+    try {
+        const total = await Doctor.find().count().exec()
+        const bds = await Doctor.find({ doctor_type: 'bds' }).count().exec()
+        const mbbs = await Doctor.find({ doctor_type: 'mbbs' }).count().exec()
+
+        res.status(200).json({ total, bds, mbbs })
+    } catch (error) {
+        next(error)
+    }
+}
+
+
 module.exports = {
     createDoctor,
     doctorsList,
     doctorView,
     doctorDelete,
-    doctorUpdate
+    doctorUpdate,
+    doctorCount
 }
