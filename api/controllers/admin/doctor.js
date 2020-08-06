@@ -22,6 +22,9 @@ const createDoctor = async (req, res) => {
                 message: "success",
             })
         }
+        res.status(500).json({
+            message: "failed",
+        })
 
 
     } catch (error) {
