@@ -98,32 +98,8 @@ const myProfile = async (req, res, next) => {
 }
 
 
-// Logout
-const logout = async (req, res, next) => {
-    try {
-        const token = req.headers.authorization.split(' ')[1]
-        const decode = jwt.verify(token, 'SECRET')
-
-        let admin = await Admin.findOne({ $and: [{ _id: decode.id }, { email: decode.email }, { role: decode.role }] })
-        if (!admin) {
-            return res.status(204).json({ message: false })
-        }
-
-        const updateToken = await Admin.findByIdAndUpdate({ _id: decode.id }, { $set: { 'access_token': null } })
-        if (!updateToken) {
-            return res.status(401).json({ message: false })
-        }
-        res.status(200).json({ message: true })
-
-    } catch (error) {
-        next(error)
-    }
-}
-
-
 module.exports = {
     register,
     login,
-    myProfile,
-    logout
+    myProfile
 }
