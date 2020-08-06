@@ -96,7 +96,7 @@ const doctorDelete = async (req, res) => {
 const doctorUpdate = async (req, res) => {
     let message
     let id = req.params.id
-    const data = req.body
+    const { data } = req.body
     try {
         const result = await Doctor.findByIdAndUpdate(
             { _id: id },
@@ -119,7 +119,7 @@ const doctorUpdate = async (req, res) => {
 
 
 // Total doctor count
-const doctorCount = async(req, res, next) => {
+const doctorCount = async (req, res, next) => {
     try {
         const total = await Doctor.find().count().exec()
         const bds = await Doctor.find({ doctor_type: 'bds' }).count().exec()
