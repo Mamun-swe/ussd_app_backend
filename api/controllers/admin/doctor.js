@@ -1,7 +1,13 @@
 const Doctor = require("../../models/doctor")
 
 const createDoctor = async (req, res) => {
+    let { reg_number, email, phone } = req.body
     try {
+
+        const doctor = await Doctor.findOne({ $or: [{ reg_number }, { email }, { phone }] }).exec()
+        if (doctor) {
+            return res.status(409).json({ message: 'exist' })
+        }
         const data = new Doctor({
             reg_number: req.body.reg_number,
             name: req.body.name,
@@ -18,11 +24,9 @@ const createDoctor = async (req, res) => {
         let newData = await data.save()
 
         if (!newData) {
-            return res.status(500).json({message: "failed"})
+            return res.status(500).json({ message: "failed" })
         }
-        res.status(200).json({message: "success"})
-        
-
+        res.status(200).json({ message: "success" })
 
     } catch (error) {
         res.status(500).json({
