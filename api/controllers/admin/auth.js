@@ -54,12 +54,14 @@ const login = async (req, res, next) => {
         if (admin) {
             const result = await bcrypt.compare(password, admin.password)
             if (result) {
+                const id = admin._id
                 const token = await jwt.sign({ id: admin._id, name: admin.name, email: admin.email, role: admin.role }, 'SECRET', { expiresIn: '1d' })
                 const updateToken = await Admin.findOneAndUpdate({ _id: admin._id }, { $set: { 'access_token': token } }, { new: true }).exec()
                 if (updateToken) {
                     return res.status(200).json({
                         message: true,
-                        token
+                        token,
+                        id
                     })
                 }
                 return res.status(204).json({ message: false })
@@ -78,11 +80,10 @@ const login = async (req, res, next) => {
 
 // Me
 const myProfile = async (req, res, next) => {
+    let { id } = req.params
     try {
-        const token = req.headers.authorization.split(' ')[1]
-        const decode = jwt.verify(token, 'SECRET')
 
-        let admin = await Admin.findOne({ $and: [{ _id: decode.id }, { email: decode.email }] }, { password: 0, access_token: 0 })
+        let admin = await Admin.findOne({ _id: id }, { password: 0, access_token: 0 })
         if (!admin) {
             return res.status(204).json({ message: false })
         }
