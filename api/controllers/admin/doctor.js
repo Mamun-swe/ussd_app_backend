@@ -96,7 +96,7 @@ const doctorDelete = async (req, res) => {
 const doctorUpdate = async (req, res) => {
     let message
     let id = req.params.id
-    const { data } = req.body
+    const data = req.body
     try {
         const result = await Doctor.findByIdAndUpdate(
             { _id: id },
