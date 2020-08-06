@@ -5,7 +5,7 @@ const doctorController = require("../controllers/admin/doctor")
 
 router.post('/register', authController.register)
 router.post('/login', authController.login)
-router.get('/me', authController.myProfile)
+router.get('/me/:id', authController.myProfile)
 
 
 router.post("/doctor", doctorController.createDoctor)
